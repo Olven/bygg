@@ -8,9 +8,12 @@
 #define F_CPU 4915200UL
 
 #include <avr/io.h>
+#include <stdlib.h>
 #include <util/delay.h>
 #include "driver/uart/uart.h"
 #include "testExternalMemory.h"
+#include "driver/adc/adc.h"
+#include "driver/joystick/joystick.h"
 
 
 int main(void)
@@ -29,13 +32,26 @@ int main(void)
 
 	// Test line for testing the latch.
 	//volatile char *ext_ram = (char *) 0x1801; // Start address for the SRAM
-		
-	volatile char * test=(char *) 1400;
-	volatile char * invTest=(char *) 1800;
 	SRAM_test();
+	
+	
+	//volatile char * test=(char *) 1400;
+	//volatile char * invTest=(char *) 1800;
+	
+	joystick_init();
 	
 	while(1)
 	{
+		printf("Inside while loop...\n");
+		
+		volatile uint8_t result = ADC_read(joystick_x);
+		//const char *char_pointer_x = (char*)result;
+		printf("Result x: %i \n",result);
+		
+		
+		result = ADC_read(joystick_y);
+		printf("Result y: %i \n",result);
+		
 
 
 	}

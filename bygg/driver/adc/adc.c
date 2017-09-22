@@ -7,24 +7,27 @@
 
 #include <avr/io.h>
 #include "adc.h"
+//#include "driver/uart/uart.h"
 
 
-
-
-volatile char * adc=(char *) 0x1400;
-
-
+#define F_CPU 4915200
+#include <avr/delay.h>
+volatile uint8_t * adc=(char *) 0x1400;
+/*
+void ADC_init()
+{
+	EMCUCR |= (1 << ISC2);
+	GICR |= (1 << INT2);
+}
+*/
 
 uint8_t ADC_read(channel input)
 {
-	DDRE |= (0 << DDE0);	// Sånn at vi får rett DDR, som si vill ha til input.
-	
+	//DDRE &= ~(1 << DDE0);
 	*adc = input;
-	while(PINE & (1 << INT2)) // https://electronics.stackexchange.com/questions/5302/how-do-i-read-digital-input-on-atmega16
-	{
-		
-	}
-		
+	//while(PINE & (1 << INT2));
+	_delay_ms(50);
+	
 	return *adc;
 	
 }
