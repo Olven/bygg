@@ -10,27 +10,49 @@
 #define JOYSTICK_H_
 
 typedef int joystick_position_t;
-typedef int joystick_direction_t;
+typedef char joystick_direction_t;
+
+
 
 void joystick_init();
 
 void joystick_calibrate();
 
+
+
 //bool joystick_button(int button);
 
 struct joystick_position_t joystick_getPosition();
 
+struct joystick_position_t joystick_getSliderPosition();
+
 joystick_direction_t joystick_getDirection();
+
+struct buttonpressed buttonstate();
+
+const char* getDirection();
+
+struct buttonpressed
+{
+	int leftbutton;
+	int rightbutton;
+	int joystickbutton;
+}button;
+	
 
 struct joystick_position_t
 {
-	uint8_t x_dir;
-	uint8_t y_dir;
-}pos;
+	int x_dir;
+	int y_dir;
+}joystick_pos;
 
-struct joystick_direction_t
+enum joystick_direction_t
 {
-	
-};
+	Right,
+	Left,
+	Up,
+	Down,
+	Neutral
+}joystick_dir;
 
 #endif /* JOYSTICK_H_ */

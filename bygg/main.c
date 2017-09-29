@@ -9,6 +9,7 @@
 
 #include <avr/io.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <util/delay.h>
 #include "driver/uart/uart.h"
 #include "testExternalMemory.h"
@@ -38,12 +39,12 @@ int main(void)
 	//volatile char * test=(char *) 1400;
 	//volatile char * invTest=(char *) 1800;
 	
-	joystick_init();
+	//joystick_init();
 	
 	while(1)
 	{
 		printf("Inside while loop...\n");
-		
+		/*
 		volatile uint8_t result = ADC_read(joystick_x);
 		//const char *char_pointer_x = (char*)result;
 		printf("Result x: %i \n",result);
@@ -51,9 +52,56 @@ int main(void)
 		
 		result = ADC_read(joystick_y);
 		printf("Result y: %i \n",result);
+		*/
+		/*
+		struct joystick_position_t result;
+		result = joystick_getPosition();
 		
-
-
+		printf("Position x: %i \n", result.x_dir);
+		printf("Position y: %i \n", result.y_dir);
+		
+		_delay_ms(1000);
+		
+		
+		char* direction;
+		direction = getDirection();
+		printf("Direction of joystick: %s\n", direction);
+		
+		_delay_ms(1000);
+		*/
+		/*
+		struct joystick_position_t result;
+		result = joystick_getSliderPosition();
+		
+		printf("Position x: %i \n", result.x_dir);
+		printf("Position y: %i \n", result.y_dir);
+				
+		_delay_ms(2000);
+				
+				
+		char* direction;
+		direction = getDirection();
+		printf("Direction of joystick: %s\n", direction);
+				
+		_delay_ms(2000);
+		*/
+		
+		struct buttonpressed knapp;
+		knapp = buttonstate();
+		
+		
+		if(knapp.joystickbutton)
+		{
+			printf("Joystick button pressed.\n");
+			
+		}
+		if(knapp.leftbutton){
+			printf("Left button pressed.\n");
+		}
+		if(knapp.rightbutton){
+			printf("Right button pressed.\n");
+		}
+		_delay_ms(1000);
 	}
 
 }
