@@ -44,12 +44,23 @@ int main(void)
 	
 	oled_init();
 
+while(1);
 	while(1)
 	{
-		//oled_init();
-		oled_data_dump();
-		//_delay_ms(1000);
+
+		oled_clear();
 	
+		uint8_t i = 0;
+		
+		
+		/*
+		for (i = 0; i < 8; i = i + 1)
+		{
+			oled_goto_page(i);
+			oled_data_dump();
+		}
+		*/
+		
 	}
 
 }
