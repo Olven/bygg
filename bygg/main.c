@@ -11,10 +11,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <util/delay.h>
+
+// Vår eigne hedarar.
 #include "driver/uart/uart.h"
 #include "testExternalMemory.h"
 #include "driver/adc/adc.h"
 #include "driver/joystick/joystick.h"
+#include "driver/oled/oled.h"
+
+
+volatile char *peikar = (char) 0x1200;
 
 
 int main(void)
@@ -33,75 +39,17 @@ int main(void)
 
 	// Test line for testing the latch.
 	//volatile char *ext_ram = (char *) 0x1801; // Start address for the SRAM
-	SRAM_test();
+	//SRAM_test();
 	
 	
-	//volatile char * test=(char *) 1400;
-	//volatile char * invTest=(char *) 1800;
-	
-	//joystick_init();
-	
+	oled_init();
+
 	while(1)
 	{
-		printf("Inside while loop...\n");
-		/*
-		volatile uint8_t result = ADC_read(joystick_x);
-		//const char *char_pointer_x = (char*)result;
-		printf("Result x: %i \n",result);
-		
-		
-		result = ADC_read(joystick_y);
-		printf("Result y: %i \n",result);
-		*/
-		/*
-		struct joystick_position_t result;
-		result = joystick_getPosition();
-		
-		printf("Position x: %i \n", result.x_dir);
-		printf("Position y: %i \n", result.y_dir);
-		
-		_delay_ms(1000);
-		
-		
-		char* direction;
-		direction = getDirection();
-		printf("Direction of joystick: %s\n", direction);
-		
-		_delay_ms(1000);
-		*/
-		/*
-		struct joystick_position_t result;
-		result = joystick_getSliderPosition();
-		
-		printf("Position x: %i \n", result.x_dir);
-		printf("Position y: %i \n", result.y_dir);
-				
-		_delay_ms(2000);
-				
-				
-		char* direction;
-		direction = getDirection();
-		printf("Direction of joystick: %s\n", direction);
-				
-		_delay_ms(2000);
-		*/
-		
-		struct buttonpressed knapp;
-		knapp = buttonstate();
-		
-		
-		if(knapp.joystickbutton)
-		{
-			printf("Joystick button pressed.\n");
-			
-		}
-		if(knapp.leftbutton){
-			printf("Left button pressed.\n");
-		}
-		if(knapp.rightbutton){
-			printf("Right button pressed.\n");
-		}
-		_delay_ms(1000);
+		//oled_init();
+		oled_data_dump();
+		//_delay_ms(1000);
+	
 	}
 
 }
