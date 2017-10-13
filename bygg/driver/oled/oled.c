@@ -48,7 +48,9 @@ void oled_init()
 	oled_write_cmd(0x0);
 	oled_write_cmd(0x10);
 	
-	printf("OLED_init complete...\n");
+	
+	fdevopen(oled_write_char, NULL);
+	
 	
 }
 
@@ -61,11 +63,7 @@ void oled_clear()
 	
 	for (i = 0; i < 8; i = i + 1)
 	{
-		oled_goto_page(i);
-		for (j = 0; j < 128; j = j + 1)
-		{
-			oled_write_data(0x00);
-		}
+		oled_clear_page(i);
 	}
 	
 	oled_home();
@@ -77,7 +75,7 @@ void oled_home(void) {
 	page = 0;
 	column = 0;
 	
-	//Set th ecursor to the start of the screen
+	//Set the cursor to the start of the screen
 	oled_write_cmd(0x21);
 	oled_write_cmd(0x00);
 	oled_write_cmd(0x7f);
@@ -94,6 +92,7 @@ void oled_menu()
 
 void oled_reset()
 {
+	oled_clear();
 	oled_write_cmd(0x00);
 	oled_write_cmd(0x10);
 }
@@ -109,18 +108,24 @@ void oled_clear_page(uint8_t line)
 {
 	page = line;
 	oled_write_cmd(Set_Page_Address + page);
-	for (int i = 0; i < 128; i = i + 1)
+	for (int i = 0; i < Display_Width; i = i + 1)
 	{
 		oled_write_data(0x00);
 	}
 }
 
+void oled_goto_column(uint8_t col)
+{
+	column = col;
+	
+	oled_write_cmd(col);
+}
+
 void oled_write_char(char c)
 {
-	//oled_write_cmd(0x00);
-	//oled_write_cmd(0x10);
-	oled_goto_page(0);
-	for(int i = 0; i < 5; i++)
+
+	//oled_goto_page(0);
+	for(int i = 0; i < 5; i++)	// Font width = 5;
 	{
 		oled_write_data(pgm_read_byte(&font5[c - ASCII_OFFSET][i]));
 	}

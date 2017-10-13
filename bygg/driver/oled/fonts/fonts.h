@@ -12,5 +12,4 @@
 #include <avr/pgmspace.h>
 const unsigned char font5[95][5];
 
-
 #endif /* FONTS_H_ */

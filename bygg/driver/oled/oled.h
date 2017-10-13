@@ -10,9 +10,9 @@
 #define ext_oled_data	((volatile char*) 0x1200)
 
 
-#define DISP_HEIGHT					64
-#define DISP_WIDTH					128
-#define DISP_PAGES					(DISP_HEIGHT/8)
+#define Display_Height					64
+#define Display_Width					128
+#define Display_Pages				(DISP_HEIGHT/8)
 
 #define Set_Column_Address			0xA0
 #define Set_Page_Address			0xB0
