@@ -9,15 +9,26 @@
 #ifndef MENU_H_
 #define MENU_H_
 
-
-void create_menu();
-void build_menu();
-void draw_cursor();
+typedef struct menu menu;
+typedef struct menu_item menu_item;
 
 
-void set_cursor_position();
+struct menu_item{
+	const char* name;
+};
+
+
+struct menu
+{
+	char title;
+	menu *parent;
+	struct menu *child;
+
+};
 
 void get_cursor_position();
+void move_cursor();
+void remove_cursor();
 
 /*
 struct menu_builder
@@ -25,6 +36,6 @@ struct menu_builder
 	char title[]
 	int *parent
 	char sub_menus[]
-	};
+};
 */
 #endif /* MENU_H_ */
