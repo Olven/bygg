@@ -18,9 +18,9 @@
 #include "driver/adc/adc.h"
 #include "driver/joystick/joystick.h"
 #include "driver/oled/oled.h"
-
 #include "menu/menu.h"
 
+#include "driver/spi/spi.h"
 
 
 int main(void)
@@ -38,24 +38,12 @@ int main(void)
 	
 	oled_init();
 	oled_clear();
-	create_menu();
-	draw_cursor();
 
 	
 	
 	while(1)
 	{
-		move_cursor();
-		/*
-		if(strcmp(direction, "Up") != 0)
-		{
-			set_cursor_position(-1);
-		} 
-		if(strcmp(direction, "Down") != 0)
-		{
-			set_cursor_position(1);
-		}
-		*/
+		spi_init();
 		
 	}
 

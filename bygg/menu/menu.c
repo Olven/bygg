@@ -22,7 +22,7 @@ void build_main(){
 	
 	strcpy(main_menu.title, "Hovedmeny");
 	main_menu.parent = NULL;
-	main_menu.child-> new_game;
+	//main_menu.child-> new_game;
 		
 }
 
