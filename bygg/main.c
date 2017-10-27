@@ -35,21 +35,22 @@ int main(void)
 	// Special Function IO, XMM2 to 1 removes pin 7-4 from the External Memory
 	// pin 7-4 are used by the Atmel ICE for programming.
 	SFIOR |= (1 << XMM2);
-	/*
+	
 	oled_init();
 	oled_clear();
 	create_menu();
 	draw_cursor();
-	*/
+
+	
+	
 	while(1)
 	{
-		
-
+		move_cursor();
 		/*
 		if(strcmp(direction, "Up") != 0)
 		{
 			set_cursor_position(-1);
-		}
+		} 
 		if(strcmp(direction, "Down") != 0)
 		{
 			set_cursor_position(1);

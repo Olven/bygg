@@ -84,8 +84,8 @@ struct buttonpressed buttonstate(){
 
 struct joystick_position_t joystick_getPosition()		// Returnera posisjonen på joysticken gitt i verdiområder [-100, 100]
 {
-	joystick_pos.x_dir = ADC_read(joystick_x);
-	joystick_pos.y_dir = ADC_read(joystick_y);
+	joystick_pos.x_dir = ADC_read(joystick_y); //HAR BYTTA OM HER OBS OBS!!!
+	joystick_pos.y_dir = ADC_read(joystick_x);
 	joystick_pos.x_dir = (joystick_pos.x_dir - 127)/1.27;
 	joystick_pos.y_dir = (joystick_pos.y_dir - 127)/1.27;
 	return joystick_pos;
@@ -113,7 +113,7 @@ joystick_direction_t joystick_getDirection()	// Returns the direction off the jo
 	
 	Funksjonen returnerer ein verdi, gitt frå enum joystick_direction_t
 	*/
-	
+	joystick_getPosition();
 	
 	int Dir_threshold = 80;
 	int Neutral_threshold = 40;
@@ -152,6 +152,9 @@ joystick_direction_t joystick_getDirection()	// Returns the direction off the jo
 	
 	return joystick_dir;
 }
+
+	
+
 
 const char* getDirection()	// getDirection returnera ein chararray som beskriv retningen basert på verdien frå joystick_getDirection().
 {

@@ -46,6 +46,7 @@ struct joystick_position_t
 	int y_dir;
 }joystick_pos;
 
+
 enum joystick_direction_t
 {
 	Right,
@@ -54,5 +55,6 @@ enum joystick_direction_t
 	Down,
 	Neutral
 }joystick_dir;
+
 
 #endif /* JOYSTICK_H_ */
