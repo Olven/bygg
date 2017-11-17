@@ -55,27 +55,19 @@ uint8_t mcp2515_Read_Status()
     return mcp_status;
 }
 
-void mcp2515_BitMod(uint8_t address, uint8_t mask)
+void mcp2515_BitMod(uint8_t address, uint8_t mask, uint8_t data)
 {
-    /*
-    The  command  is  followed  by  the  address  of  the
-    register, the mask byte and finally the data byte.
-    The mask byte determines which bits in the register will
-    be allowed to change. A ‘1’ in the mask byte will allow
-    a bit in the register to change, while a ‘0’ will not.
-    The data byte determines what value the modified bits
-    in the register will be changed to. A ‘1’ in the data byte
-    will set the bit and a ‘0’ will clear the bit, provided that
-    the mask for that bit is set to a ‘1’;
-    */
-
+    // Send an address, a mask and data, the chip will then change the
+    // byte in the address using the mask and input data.
+    // 1 in mask = change, 0 = do not change.
+    // Data spesifies the value we want the bit to change too: 1|0.
 
     spi_chipselect(1);
 
     spi_send(MCP_BITMOD);
     spi_send(address);
     spi_send(mask);
-
+    spi_send(data);
 
     spi_chipselect(0);
 }
