@@ -64,4 +64,7 @@ void mcp2515_BitMod()
 
 void mcp2515_Reset()
 {
+    spi_chipselect(1);
+    spi_send(MCP_RESET);
+    spi_chipselect(0);
 }
