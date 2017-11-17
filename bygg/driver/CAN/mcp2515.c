@@ -49,7 +49,7 @@ uint8_t mcp2515_Read_Status()
     // Read status 0b1010 0000 = 0xA0 = MCP_READ_STATUS;
     spi_send(MCP_READ_STATUS);
     mcp_status = spi_read();    // Returns statusbits for transmit and revice functions.
-                                // 
+                                //
     spi_chipselect(0);
 
     return mcp_status;
@@ -57,7 +57,9 @@ uint8_t mcp2515_Read_Status()
 
 void mcp2515_BitMod()
 {
+    spi_chipselect(1);
 
+    spi_chipselect(0);
 }
 
 void mcp2515_Reset()
