@@ -1,6 +1,15 @@
 #ifndef __MCP2515_H
 #define __MCP2515_H
+
 uint8_t mcp2515_Read(uint8_t address);
+
+uint8_t mcp2515_Read_Status();
+
+
+
+
+
+
 /*
 mcp2515.h
 
