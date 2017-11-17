@@ -37,9 +37,15 @@ void mcp2515_Write(uint8_t address, uint8_t data)
 	spi_chipselect(0);
 }
 
-void mcp2515_Request_to_Send()
+void mcp2515_Request_to_Send(uint8_t reg)
 {
+    // Request to send from buffer..
+    // Command is 1000 0NNNb.
+    // Where NNN is 1|0 and spesifies which buffer to request transmission.
 
+    spi_chipselect(1);
+    spi_send(reg);
+    spi_chipselect(0);
 }
 
 uint8_t mcp2515_Read_Status()
