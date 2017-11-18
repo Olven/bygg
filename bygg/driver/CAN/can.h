@@ -8,6 +8,12 @@
 
 #ifndef CANDRIVER_H_
 
+struct message{
+	int msg_id;
+    int8_t msg_length;
+    int8_t msg[];
+}CAN_msg;
+
 void can_init();
 void can_message_send();
 void can_error();
