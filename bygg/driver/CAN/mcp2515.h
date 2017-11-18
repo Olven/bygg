@@ -2,8 +2,12 @@
 #define __MCP2515_H
 
 uint8_t mcp2515_Read(uint8_t address);
-
+void mcp2515_Write(uint8_t address, uint8_t data);
 uint8_t mcp2515_Read_Status();
+void mcp2515_Request_to_Send(uint8_t reg);
+void mcp2515_BitMod(uint8_t address, uint8_t mask, uint8_t data);
+void mcp2515_Reset();
+
 
 /*
 mcp2515.h
