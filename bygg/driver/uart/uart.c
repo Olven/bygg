@@ -3,7 +3,7 @@
  *
  * Created: 08.09.2017 09:20:46
  *  Author: sondstaf
- */ 
+ */
 
 #define F_CPU 4915200UL
 #define BAUD 9600
@@ -18,23 +18,17 @@
 #include "uart.h"
 
 
-
-
-// PD0 is used as the UART Receiver, and PD1 as Transmitter.
-
-
-
 void uart_init(void)
 {
 
 	UBRR0L = MYBURR;
 
-	
+
 	//UCSR0B = (1<<RXEN)|(1<<TXEN); //Enables receiver and transmitter
 	//UCSR0C = (1<<URSEL0)|(1<<UCSZ00)|(1<<UCSZ10); //set frame formal :8data, 2stop bit
-	
+
 	// USART Control and Status
-	// UCSRB 
+	// UCSRB
 	UCSR0B  |=  (1<<RXEN0); // receive enable
 	UCSR0B	|=	(1<<TXEN0); // transmit enable
 
@@ -55,5 +49,5 @@ uint8_t uart_receive()
 {
 	while ( !((UCSR0A) & (1<<RXC0)) ); //wait for data to be received
 	return UDR0; //Get and return received data from buffer
-	
+
 }

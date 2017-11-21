@@ -19,11 +19,11 @@ void build_main(){
 	menu main_menu;
 	menu options;
 	menu new_game;
-	
+
 	strcpy(main_menu.title, "Hovedmeny");
 	main_menu.parent = NULL;
 	//main_menu.child-> new_game;
-		
+
 }
 
 
@@ -40,10 +40,11 @@ uint8_t get_current_position()
 
 void create_menu()
 {
-	
+
 }
 
 /*
+Old version of the menu..
 void create_menu(menu* m)
 {
 	const char *words[4] = {"Main menu", "Play game", "Options","End game" };
@@ -51,19 +52,19 @@ void create_menu(menu* m)
 	for(i = 0; i < m->length; i = i + 1){
 		build_menu(m->pos[i],i);
 	}
-	
+
 }
 const char *first[4] = {"Main menu", "Play game", "Options","End game" };
 create_menu(first,4);
 
 void create_menu(char words*, length)
 {
-	
+
 	uint8_t i = 0;
 	for(i = 0; i < length; i = i + 1){
 		build_menu(words[i],i);
 	}
-	
+
 }
 */
 void build_menu(menu menu_to_build, int page)
@@ -79,7 +80,7 @@ void build_menu(menu menu_to_build, int page)
 
 void draw_cursor(uint8_t pos)
 {
-	
+
 	current_position = current_position + pos;
 	oled_goto_page(current_position);
 	oled_write_cmd(0x03);
@@ -100,7 +101,7 @@ void remove_cursor() //remove cursor from position
 void move_cursor() //takes x and y values from joystick to move cursor up and down in the menu
 {
 	uint8_t pos;
-	if(joystick_getDirection() == Up) 
+	if(joystick_getDirection() == Up)
 	{
 		remove_cursor();				// Remove cursor from previous position.
 		if(current_position == 0)
@@ -113,7 +114,7 @@ void move_cursor() //takes x and y values from joystick to move cursor up and do
 		}
 	draw_cursor(pos);
 	}
-	else if(joystick_getDirection() == Down) 
+	else if(joystick_getDirection() == Down)
 	{
 		remove_cursor();				// Remove cursor from previous position.
 		if(current_position == 7)

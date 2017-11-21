@@ -52,8 +52,6 @@ uint8_t spi_read(){ //When master sends information, it sends a dummy bit first!
 
 	spi_send(0xFF); // Dummy byte, we need to send data to the MCP to read data with SPI.
 
-	//uint8_t *data = 1;
-	//SPDR = data;
 	//Wait for reception to complete
 	while(!(SPSR & (1<<(SPIF)))){}
 

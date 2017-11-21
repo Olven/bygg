@@ -3,7 +3,7 @@
  *
  * Created: 13.10.2017 14:24:14
  *  Author: sondstaf
- */ 
+ */
 
 
 #ifndef MENU_H_
