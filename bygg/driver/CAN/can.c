@@ -18,6 +18,7 @@ void can_init()
 }
 void can_message_send(CAN_msg)
 {
+    /*
    while(mcp2515_bit_test(MCP_TXB0CTRL__TEST_TX_REQUEST)){}
 
     mcp2515_write(msg.id >> 3,  MCP_TXB0_SIDH);
@@ -27,6 +28,7 @@ void can_message_send(CAN_msg)
         mcp2515_write(msg.data.bytes[i], MCP_TXB0_D0 + i);
     }
     mcp2515_request_to_send(MCP_RTS_TXB0);
+    */
 
 void can_error()
 {
@@ -38,7 +40,8 @@ void can_transmit_complete()
 }
 void can_data_receive()
 {
-can_msg_t msg;
+    /*
+    can_msg_t msg;
 
     memset(&msg, 0, sizeof(can_msg_t));
 
@@ -57,6 +60,7 @@ can_msg_t msg;
     }
 
     return msg;
+    */
 }
 void can_int_vect()
 {
