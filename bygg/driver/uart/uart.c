@@ -34,7 +34,7 @@ void uart_init(void)
 
 
 	// Declare printf = uart_transmit and scanf = uart_recive, uncomment to make the chip write to uart, and comment out the oled command.
-	//fdevopen(uart_transmit, uart_receive);
+	fdevopen(uart_transmit, uart_receive);
 }
 
 

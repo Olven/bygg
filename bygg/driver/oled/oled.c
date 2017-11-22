@@ -49,7 +49,7 @@ void oled_init()
 	oled_write_cmd(0x10);
 
 
-	fdevopen(oled_write_char, NULL);
+	//fdevopen(oled_write_char, NULL);
 }
 
 void oled_clear()
